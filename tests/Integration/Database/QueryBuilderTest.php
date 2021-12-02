@@ -52,31 +52,31 @@ class QueryBuilderTest extends DatabaseTestCase
         DB::table('posts')->where('title', 'Baz Post')->sole();
     }
 
-    // public function testSelect()
-    // {
-    //     $expected = ['id' => '1', 'title' => 'Foo Post'];
+    public function testSelect()
+    {
+        $expected = ['id' => '1', 'title' => 'Foo Post'];
 
-    //     $this->assertEquals($expected, (array) DB::table('posts')->select('id', 'title')->first());
-    //     $this->assertEquals($expected, (array) DB::table('posts')->select(['id', 'title'])->first());
-    // }
+        $this->assertEquals($expected, (array) DB::table('posts')->select('id', 'title')->first());
+        $this->assertEquals($expected, (array) DB::table('posts')->select(['id', 'title'])->first());
+    }
 
-    // public function testSelectReplacesExistingSelects()
-    // {
-    //     $this->assertEquals(
-    //         ['id' => '1', 'title' => 'Foo Post'],
-    //         (array) DB::table('posts')->select('content')->select(['id', 'title'])->first()
-    //     );
-    // }
+    public function testSelectReplacesExistingSelects()
+    {
+        $this->assertEquals(
+            ['id' => '1', 'title' => 'Foo Post'],
+            (array) DB::table('posts')->select('content')->select(['id', 'title'])->first()
+        );
+    }
 
-    // public function testSelectWithSubQuery()
-    // {
-    //     $this->assertEquals(
-    //         ['id' => '1', 'title' => 'Foo Post', 'foo' => 'Lorem Ipsum.'],
-    //         (array) DB::table('posts')->select(['id', 'title', 'foo' => function ($query) {
-    //             $query->select('content');
-    //         }])->first()
-    //     );
-    // }
+    public function testSelectWithSubQuery()
+    {
+        $this->assertEquals(
+            ['id' => '1', 'title' => 'Foo Post', 'foo' => 'Lorem Ipsum.'],
+            (array) DB::table('posts')->select(['id', 'title', 'foo' => function ($query) {
+                $query->select('content');
+            }])->first()
+        );
+    }
 
     // public function testAddSelect()
     // {
