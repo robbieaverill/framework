@@ -49,7 +49,7 @@ class PostgresConnector extends Connector implements ConnectorInterface
 
         $this->configureSynchronousCommit($connection, $config);
 
-        $connection->prepare("set max_connections 200")->execute();
+        $connection->prepare("set max_connections '200'")->execute();
 
         return $connection;
     }
