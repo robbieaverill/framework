@@ -26,7 +26,7 @@ abstract class DatabaseTestCase extends TestCase
 
     protected function tearDown(): void
     {
-        echo __CLASS__.': '.count(DB::getConnections()).PHP_EOL;
+        echo get_class().': '.count(DB::getConnections()).PHP_EOL;
 
         parent::tearDown();
     }
