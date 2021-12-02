@@ -24,7 +24,7 @@ abstract class DatabaseTestCase extends TestCase
         $this->driver = $app['config']->get("database.connections.$connection.driver");
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
