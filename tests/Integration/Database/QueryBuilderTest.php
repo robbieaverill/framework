@@ -34,23 +34,23 @@ class QueryBuilderTest extends DatabaseTestCase
         $this->assertEquals($expected, (array) DB::table('posts')->where('title', 'Foo Post')->select('id', 'title')->sole());
     }
 
-    // public function testSoleFailsForMultipleRecords()
-    // {
-    //     DB::table('posts')->insert([
-    //         ['title' => 'Foo Post', 'content' => 'Lorem Ipsum.', 'created_at' => new Carbon('2017-11-12 13:14:15')],
-    //     ]);
+    public function testSoleFailsForMultipleRecords()
+    {
+        DB::table('posts')->insert([
+            ['title' => 'Foo Post', 'content' => 'Lorem Ipsum.', 'created_at' => new Carbon('2017-11-12 13:14:15')],
+        ]);
 
-    //     $this->expectException(MultipleRecordsFoundException::class);
+        $this->expectException(MultipleRecordsFoundException::class);
 
-    //     DB::table('posts')->where('title', 'Foo Post')->sole();
-    // }
+        DB::table('posts')->where('title', 'Foo Post')->sole();
+    }
 
-    // public function testSoleFailsIfNoRecords()
-    // {
-    //     $this->expectException(RecordsNotFoundException::class);
+    public function testSoleFailsIfNoRecords()
+    {
+        $this->expectException(RecordsNotFoundException::class);
 
-    //     DB::table('posts')->where('title', 'Baz Post')->sole();
-    // }
+        DB::table('posts')->where('title', 'Baz Post')->sole();
+    }
 
     // public function testSelect()
     // {
