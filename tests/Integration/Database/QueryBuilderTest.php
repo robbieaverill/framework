@@ -27,10 +27,13 @@ class QueryBuilderTest extends DatabaseTestCase
         ]);
     }
 
-    public function tearDown(): void
+    /**
+     * Destroy database migrations.
+     *
+     * @return void
+     */
+    protected function destroyDatabaseMigrations()
     {
-        parent::tearDown();
-
         DB::connection()->disconnect();
     }
 
