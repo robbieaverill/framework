@@ -97,20 +97,20 @@ class QueryBuilderTest extends DatabaseTestCase
         );
     }
 
-    // public function testFromWithAlias()
-    // {
-    //     $this->assertCount(2, DB::table('posts', 'alias')->select('alias.*')->get());
-    // }
+    public function testFromWithAlias()
+    {
+        $this->assertCount(2, DB::table('posts', 'alias')->select('alias.*')->get());
+    }
 
-    // public function testFromWithSubQuery()
-    // {
-    //     $this->assertSame(
-    //         'Fake Post',
-    //         DB::table(function ($query) {
-    //             $query->selectRaw("'Fake Post' as title");
-    //         }, 'posts')->first()->title
-    //     );
-    // }
+    public function testFromWithSubQuery()
+    {
+        $this->assertSame(
+            'Fake Post',
+            DB::table(function ($query) {
+                $query->selectRaw("'Fake Post' as title");
+            }, 'posts')->first()->title
+        );
+    }
 
     // public function testWhereValueSubQuery()
     // {
