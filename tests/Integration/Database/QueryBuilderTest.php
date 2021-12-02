@@ -217,6 +217,8 @@ class QueryBuilderTest extends DatabaseTestCase
             return $post->title;
         }, 1);
 
+        DB::disableQueryLog();
+
         $this->assertCount(2, $results);
         $this->assertSame('Foo Post', $results[0]);
         $this->assertSame('Bar Post', $results[1]);
