@@ -97,10 +97,10 @@ class QueryBuilderTest extends DatabaseTestCase
         );
     }
 
-    public function testFromWithAlias()
-    {
-        $this->assertCount(2, DB::table('posts', 'alias')->select('alias.*')->get());
-    }
+    // public function testFromWithAlias()
+    // {
+    //     $this->assertCount(2, DB::table('posts', 'alias')->select('alias.*')->get());
+    // }
 
     public function testFromWithSubQuery()
     {
@@ -112,16 +112,16 @@ class QueryBuilderTest extends DatabaseTestCase
         );
     }
 
-    // public function testWhereValueSubQuery()
-    // {
-    //     $subQuery = function ($query) {
-    //         $query->selectRaw("'Sub query value'");
-    //     };
+    public function testWhereValueSubQuery()
+    {
+        $subQuery = function ($query) {
+            $query->selectRaw("'Sub query value'");
+        };
 
-    //     $this->assertTrue(DB::table('posts')->where($subQuery, 'Sub query value')->exists());
-    //     $this->assertFalse(DB::table('posts')->where($subQuery, 'Does not match')->exists());
-    //     $this->assertTrue(DB::table('posts')->where($subQuery, '!=', 'Does not match')->exists());
-    // }
+        $this->assertTrue(DB::table('posts')->where($subQuery, 'Sub query value')->exists());
+        $this->assertFalse(DB::table('posts')->where($subQuery, 'Does not match')->exists());
+        $this->assertTrue(DB::table('posts')->where($subQuery, '!=', 'Does not match')->exists());
+    }
 
     // public function testWhereValueSubQueryBuilder()
     // {
