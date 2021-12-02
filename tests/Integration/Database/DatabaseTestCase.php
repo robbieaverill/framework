@@ -24,10 +24,10 @@ abstract class DatabaseTestCase extends TestCase
         $this->driver = $app['config']->get("database.connections.$connection.driver");
     }
 
-    protected function setUp(): void
+    protected function tearDown(): void
     {
-        parent::setUp();
+        echo __CLASS__.': '.count(DB::getConnections()).PHP_EOL;
 
-        echo __CLASS__.': '.count(DB::getConnections());
+        parent::tearDown();
     }
 }
