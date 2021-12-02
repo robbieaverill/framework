@@ -78,24 +78,24 @@ class QueryBuilderTest extends DatabaseTestCase
         );
     }
 
-    // public function testAddSelect()
-    // {
-    //     $expected = ['id' => '1', 'title' => 'Foo Post', 'content' => 'Lorem Ipsum.'];
+    public function testAddSelect()
+    {
+        $expected = ['id' => '1', 'title' => 'Foo Post', 'content' => 'Lorem Ipsum.'];
 
-    //     $this->assertEquals($expected, (array) DB::table('posts')->select('id')->addSelect('title', 'content')->first());
-    //     $this->assertEquals($expected, (array) DB::table('posts')->select('id')->addSelect(['title', 'content'])->first());
-    //     $this->assertEquals($expected, (array) DB::table('posts')->addSelect(['id', 'title', 'content'])->first());
-    // }
+        $this->assertEquals($expected, (array) DB::table('posts')->select('id')->addSelect('title', 'content')->first());
+        $this->assertEquals($expected, (array) DB::table('posts')->select('id')->addSelect(['title', 'content'])->first());
+        $this->assertEquals($expected, (array) DB::table('posts')->addSelect(['id', 'title', 'content'])->first());
+    }
 
-    // public function testAddSelectWithSubQuery()
-    // {
-    //     $this->assertEquals(
-    //         ['id' => '1', 'title' => 'Foo Post', 'foo' => 'Lorem Ipsum.'],
-    //         (array) DB::table('posts')->addSelect(['id', 'title', 'foo' => function ($query) {
-    //             $query->select('content');
-    //         }])->first()
-    //     );
-    // }
+    public function testAddSelectWithSubQuery()
+    {
+        $this->assertEquals(
+            ['id' => '1', 'title' => 'Foo Post', 'foo' => 'Lorem Ipsum.'],
+            (array) DB::table('posts')->addSelect(['id', 'title', 'foo' => function ($query) {
+                $query->select('content');
+            }])->first()
+        );
+    }
 
     // public function testFromWithAlias()
     // {
