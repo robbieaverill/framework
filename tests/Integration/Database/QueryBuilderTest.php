@@ -27,6 +27,13 @@ class QueryBuilderTest extends DatabaseTestCase
         ]);
     }
 
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        DB::connection()->disconnect();
+    }
+
     public function testSole()
     {
         $expected = ['id' => '1', 'title' => 'Foo Post'];
@@ -216,8 +223,6 @@ class QueryBuilderTest extends DatabaseTestCase
         $results = DB::table('posts')->orderBy('id')->chunkMap(function ($post) {
             return $post->title;
         }, 1);
-
-        DB::disableQueryLog();
 
         $this->assertCount(2, $results);
         $this->assertSame('Foo Post', $results[0]);
